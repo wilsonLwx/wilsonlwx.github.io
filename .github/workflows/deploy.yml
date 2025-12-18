@@ -1,6 +1,7 @@
 name: Deploy Hexo to GitHub Pages
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -15,26 +16,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout source
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Clean and install dependencies
-        run: |
+      - run: |
           rm -rf node_modules package-lock.json
           npm install
 
-      - name: Build Hexo
-        run: npx hexo generate
+      - run: npx hexo clean
+      - run: npx hexo generate
 
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
+      - uses: peaceiris/actions-gh-pages@v4
         with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          external_repository: wilsonlwx/wilsonlwx.github.io
           publish_branch: main
