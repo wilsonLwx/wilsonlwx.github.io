@@ -1,1 +1,14 @@
-theme: Architect
+# Site
+title: Wilson's Blog
+subtitle: 技术 / 记录
+language: zh-CN
+timezone: Asia/Shanghai
+
+# URL
+url: https://wilsonlwx.github.io
+root: /
+
+deploy:
+  type: git
+  repo: https://github.com/wilsonlwx/wilsonlwx.github.io.git
+  branch: main

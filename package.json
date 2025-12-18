@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "hexo-deployer-git": "^4.0.0",
+    "hexo-theme-next": "^8.26.0"
+  }
+}
